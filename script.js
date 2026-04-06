@@ -7,7 +7,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.14 }
+  { threshold: 0.15 }
 );
 
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
@@ -27,35 +27,35 @@ function getErrorMessage(field) {
   }
 
   if (field.tagName === "TEXTAREA" && value.length < 16) {
-    return "Merci de préciser un peu plus votre demande.";
+    return "Merci de détailler un peu plus votre demande.";
   }
 
   return "";
 }
 
-function setFieldError(field, message) {
+function showFieldError(field, message) {
   field.setAttribute("aria-invalid", "true");
-  const help = field.parentElement.querySelector("small");
-  if (help) {
-    help.textContent = message;
+  const errorNode = field.parentElement.querySelector("small");
+  if (errorNode) {
+    errorNode.textContent = message;
   }
 }
 
 function clearFieldError(field) {
   field.setAttribute("aria-invalid", "false");
-  const help = field.parentElement.querySelector("small");
-  if (help) {
-    help.textContent = "";
+  const errorNode = field.parentElement.querySelector("small");
+  if (errorNode) {
+    errorNode.textContent = "";
   }
 }
 
 document.querySelectorAll("[data-form]").forEach((form) => {
-  const requiredFields = [...form.querySelectorAll("[data-required]")];
-  const submitButton = form.querySelector("button[type='submit']");
+  const fields = [...form.querySelectorAll("[data-required]")];
   const successMessage = form.parentElement.querySelector(".success-message");
+  const submitButton = form.querySelector("button[type='submit']");
   const initialLabel = submitButton ? submitButton.textContent : "";
 
-  requiredFields.forEach((field) => {
+  fields.forEach((field) => {
     field.addEventListener("input", () => clearFieldError(field));
     field.addEventListener("change", () => clearFieldError(field));
   });
@@ -65,11 +65,10 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 
     let hasError = false;
 
-    requiredFields.forEach((field) => {
+    fields.forEach((field) => {
       const message = getErrorMessage(field);
-
       if (message) {
-        setFieldError(field, message);
+        showFieldError(field, message);
         hasError = true;
       } else {
         clearFieldError(field);
@@ -92,7 +91,7 @@ document.querySelectorAll("[data-form]").forEach((form) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     form.reset();
-    requiredFields.forEach((field) => clearFieldError(field));
+    fields.forEach((field) => clearFieldError(field));
 
     if (submitButton) {
       submitButton.disabled = false;
