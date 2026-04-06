@@ -39,16 +39,17 @@
     <header class="site-header">
       <div class="container nav-shell">
         <a class="brand-link" href="index.html" aria-label="Retour à l'accueil 25 lab.">
-          <img class="brand-logo" src="logo-wordmark.svg" alt="25 lab." />
+          <span class="brand-lockup" aria-label="25 lab.">
+            <span class="brand-mark">25</span>
+            <span class="brand-wordmark"><strong>lab.</strong></span>
+          </span>
         </a>
-
         <nav aria-label="Navigation principale">
           <a href="index.html">Accueil</a>
-          <a href="creations.html">Créations</a>
+          <a href="services.html">Créations</a>
           <a href="devis.html">Devis</a>
           <a class="is-active" href="contact.html">Contact</a>
         </nav>
-
         <a class="btn ghost small" href="devis.html">Demander un devis</a>
       </div>
     </header>
@@ -76,54 +77,10 @@
           </div>
 
           <form data-form="contact" novalidate>
-            <label class="field">
-              <span>Nom</span>
-              <input
-                data-required
-                type="text"
-                name="name"
-                placeholder="Votre nom ou celui de votre entreprise"
-                aria-invalid="false"
-              />
-              <small></small>
-            </label>
-
-            <label class="field">
-              <span>Email</span>
-              <input
-                data-required
-                type="email"
-                name="email"
-                placeholder="vous@entreprise.fr"
-                aria-invalid="false"
-              />
-              <small></small>
-            </label>
-
-            <label class="field">
-              <span>Sujet</span>
-              <input
-                data-required
-                type="text"
-                name="subject"
-                placeholder="Ex. demande d'information, disponibilité, collaboration..."
-                aria-invalid="false"
-              />
-              <small></small>
-            </label>
-
-            <label class="field">
-              <span>Message</span>
-              <textarea
-                data-required
-                name="message"
-                rows="6"
-                placeholder="Expliquez votre besoin, votre contexte et le type d'accompagnement recherché."
-                aria-invalid="false"
-              ></textarea>
-              <small></small>
-            </label>
-
+            <label class="field"><span>Nom</span><input data-required type="text" name="name" placeholder="Votre nom ou celui de votre entreprise" aria-invalid="false" /><small></small></label>
+            <label class="field"><span>Email</span><input data-required type="email" name="email" placeholder="vous@entreprise.fr" aria-invalid="false" /><small></small></label>
+            <label class="field"><span>Sujet</span><input data-required type="text" name="subject" placeholder="Ex. demande d'information, disponibilité, collaboration..." aria-invalid="false" /><small></small></label>
+            <label class="field"><span>Message</span><textarea data-required name="message" rows="6" placeholder="Expliquez votre besoin, votre contexte et le type d'accompagnement recherché." aria-invalid="false"></textarea><small></small></label>
             <div class="form-actions">
               <button class="btn" type="submit">Envoyer le message</button>
               <p class="form-note">Une base simple, propre et prête à connecter à votre service d'envoi.</p>
@@ -132,15 +89,12 @@
 
           <div class="success-message" role="status">
             <strong>Message bien pris en compte.</strong>
-            <span>
-              L'interface simule ici le comportement final. Il ne reste qu'à relier l'envoi à votre
-              solution choisie.
-            </span>
+            <span>L'interface simule ici le comportement final. Il ne reste qu'à relier l'envoi à votre solution choisie.</span>
           </div>
         </article>
 
-        <aside class="side-panel contact-aside reveal delay-1">
-          <div class="section-intro contact-aside-intro">
+        <aside class="side-panel reveal delay-1">
+          <div class="section-intro">
             <p class="eyebrow">Coordonnées</p>
             <h2>Une relation simple, réactive et personnalisée.</h2>
             <p>
@@ -148,32 +102,15 @@
               complexité inutile.
             </p>
           </div>
-
           <ul class="contact-meta">
-            <li>
-              <strong>Email</strong>
-              <span><a href="mailto:hello@25lab.fr">hello@25lab.fr</a></span>
-            </li>
-            <li>
-              <strong>Disponibilité</strong>
-              <span>Projets sur mesure et échanges exploratoires</span>
-            </li>
-            <li>
-              <strong>Délai de réponse</strong>
-              <span>Réponse initiale sous 48h ouvrées</span>
-            </li>
-            <li>
-              <strong>Approche</strong>
-              <span>Lecture attentive, retour structuré, posture premium mais accessible</span>
-            </li>
+            <li><strong>Email</strong><span><a href="mailto:hello@25lab.fr">hello@25lab.fr</a></span></li>
+            <li><strong>Disponibilité</strong><span>Projets sur mesure et échanges exploratoires</span></li>
+            <li><strong>Délai de réponse</strong><span>Réponse initiale sous 48h ouvrées</span></li>
+            <li><strong>Approche</strong><span>Lecture attentive, retour structuré, posture premium mais accessible</span></li>
           </ul>
-
           <div class="sub-note">
             <strong>Besoin déjà cadré ?</strong>
-            <p>
-              La page devis permet d'aller plus loin dès le premier échange si vous connaissez déjà
-              le type de site souhaité, le budget ou le calendrier.
-            </p>
+            <p>La page devis permet d'aller plus loin dès le premier échange si vous connaissez déjà le type de site souhaité, le budget ou le calendrier.</p>
             <a class="btn" href="devis.html">Aller vers le devis</a>
           </div>
         </aside>
@@ -186,31 +123,10 @@
             <h2>Un dernier repère avant d'écrire.</h2>
             <p>Ce bloc lève les petites hésitations qui ralentissent souvent le premier contact.</p>
           </div>
-
           <div class="faq-list">
-            <details class="faq-card">
-              <summary><span>Puis-je vous écrire même si mon besoin n'est pas totalement cadré ?</span><span>+</span></summary>
-              <p>
-                Oui. Si le projet est encore flou, 25 lab. peut justement aider à clarifier le bon
-                format, le bon niveau de structure et la bonne trajectoire.
-              </p>
-            </details>
-
-            <details class="faq-card">
-              <summary><span>Faut-il déjà avoir tous les contenus ?</span><span>+</span></summary>
-              <p>
-                Non. Le contenu peut être partiellement prêt. L'important est d'avoir une base de
-                vision, d'offre et d'objectif à transmettre.
-              </p>
-            </details>
-
-            <details class="faq-card">
-              <summary><span>Dois-je passer par la page devis ou la page contact ?</span><span>+</span></summary>
-              <p>
-                La page devis est idéale pour un besoin déjà concret. La page contact convient mieux
-                pour une première prise de contact, une question ou un échange exploratoire.
-              </p>
-            </details>
+            <details class="faq-card"><summary><span>Puis-je vous écrire même si mon besoin n'est pas totalement cadré ?</span><span>+</span></summary><p>Oui. Si le projet est encore flou, 25 lab. peut justement aider à clarifier le bon format, le bon niveau de structure et la bonne trajectoire.</p></details>
+            <details class="faq-card"><summary><span>Faut-il déjà avoir tous les contenus ?</span><span>+</span></summary><p>Non. Le contenu peut être partiellement prêt. L'important est d'avoir une base de vision, d'offre et d'objectif à transmettre.</p></details>
+            <details class="faq-card"><summary><span>Dois-je passer par la page devis ou la page contact ?</span><span>+</span></summary><p>La page devis est idéale pour un besoin déjà concret. La page contact convient mieux pour une première prise de contact, une question ou un échange exploratoire.</p></details>
           </div>
         </div>
       </section>
@@ -219,43 +135,19 @@
     <footer class="site-footer">
       <div class="container footer-shell">
         <div class="footer-brand">
-          <img class="brand-logo footer-logo" src="logo-wordmark-light.svg" alt="25 lab." />
-          <p>
-            25 lab. conçoit des sites web premium sur mesure pour les marques, entreprises et
-            indépendants exigeants.
-          </p>
-          <div class="footer-contact">
-            <a href="mailto:hello@25lab.fr">hello@25lab.fr</a>
-            <span>Réponse initiale sous 48h ouvrées</span>
-          </div>
+          <a class="brand-link" href="index.html" aria-label="Retour à l'accueil 25 lab.">
+            <span class="brand-lockup light" aria-label="25 lab.">
+              <span class="brand-mark">25</span>
+              <span class="brand-wordmark"><strong>lab.</strong></span>
+            </span>
+          </a>
+          <p>25 lab. conçoit des sites web premium sur mesure pour les marques, entreprises et indépendants exigeants.</p>
+          <div class="footer-contact"><a href="mailto:hello@25lab.fr">hello@25lab.fr</a><span>Réponse initiale sous 48h ouvrées</span></div>
         </div>
-
         <div class="footer-columns">
-          <div>
-            <p class="footer-label">Navigation</p>
-            <div class="link-stack">
-              <a href="index.html">Accueil</a>
-              <a href="creations.html">Créations</a>
-              <a href="devis.html">Devis</a>
-              <a href="contact.html">Contact</a>
-            </div>
-          </div>
-
-          <div>
-            <p class="footer-label">Créations</p>
-            <div class="link-stack">
-              <a href="creations.html#one-page">Site one page</a>
-              <a href="creations.html#vitrine">Site vitrine</a>
-              <a href="creations.html#ecommerce">Site e-commerce</a>
-              <a href="creations.html#maintenance">Maintenance</a>
-            </div>
-          </div>
-
-          <div class="footer-cta">
-            <p class="footer-label">Projet</p>
-            <p>Présentez votre besoin et recevez une première lecture claire et structurée.</p>
-            <a class="btn" href="devis.html">Lancer une demande</a>
-          </div>
+          <div><p class="footer-label">Navigation</p><div class="link-stack"><a href="index.html">Accueil</a><a href="services.html">Créations</a><a href="devis.html">Devis</a><a href="contact.html">Contact</a></div></div>
+          <div><p class="footer-label">Créations</p><div class="link-stack"><a href="services.html#one-page">Site one page</a><a href="services.html#site-vitrine">Site vitrine</a><a href="services.html#e-commerce">Site e-commerce</a><a href="services.html#maintenance">Maintenance</a></div></div>
+          <div class="footer-cta"><p class="footer-label">Projet</p><p>Présentez votre besoin et recevez une première lecture claire et structurée.</p><a class="btn" href="devis.html">Lancer une demande</a></div>
         </div>
       </div>
     </footer>
