@@ -310,20 +310,20 @@ nav a.is-active::after {
   line-height: 1.07;
   letter-spacing: -0.012em;
   word-spacing: 0.05em;
-  max-width: 15ch;
+  max-width: 16.5ch;
   margin-bottom: 1.2rem;
 }
 
 .page-hero {
-  max-width: 66rem;
+  max-width: 72rem;
 }
 
 .page-hero h1 {
-  font-size: clamp(2.05rem, 3.6vw, 3.3rem);
-  line-height: 1.07;
+  font-size: clamp(2.05rem, 3.45vw, 3.35rem);
+  line-height: 1.08;
   letter-spacing: -0.012em;
   word-spacing: 0.05em;
-  max-width: 18ch;
+  max-width: 21ch;
   margin-bottom: 1rem;
 }
 
@@ -349,12 +349,47 @@ tbody th {
   max-width: 46rem;
 }
 
+.hero-copy-shell {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 1.8rem);
+  align-items: center;
+}
+
+.hero-copy-content {
+  min-width: 0;
+}
+
+.hero-signature {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero-lockup {
+  gap: 0.8rem;
+}
+
+.hero-lockup .brand-mark {
+  width: clamp(3.5rem, 5vw, 4.5rem);
+  height: clamp(3.5rem, 5vw, 4.5rem);
+  border-radius: 1.35rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+}
+
+.hero-lockup .brand-wordmark strong {
+  font-size: clamp(1.65rem, 2.4vw, 2.3rem);
+  letter-spacing: -0.06em;
+}
+
 .hero-text {
   max-width: 40rem;
   font-size: 1.02rem;
   line-height: 1.78;
 }
 
+.title-keep,
 .hero-cluster {
   white-space: nowrap;
 }
@@ -391,7 +426,7 @@ tbody th {
 .side-panel h2,
 .cta-panel h2 {
   font-family: var(--font-display);
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.015em;
   word-spacing: 0.04em;
 }
@@ -799,6 +834,15 @@ thead th {
   .page-hero h1 {
     max-width: 100%;
   }
+
+  .hero-copy-shell {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .hero-signature {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 900px) {
@@ -852,6 +896,7 @@ thead th {
     padding: 1.2rem;
   }
 
+  .title-keep,
   .hero-cluster {
     white-space: normal;
   }
