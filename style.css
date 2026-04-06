@@ -227,9 +227,15 @@ button {
 .quote-layout,
 .contact-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.88fr);
-  gap: 1.25rem;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .hero {
