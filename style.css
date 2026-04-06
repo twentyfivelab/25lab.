@@ -1,23 +1,25 @@
 :root {
   --bg: #f5f0e8;
   --paper: #fbf7f1;
-  --surface: rgba(255, 252, 246, 0.84);
+  --surface: rgba(255, 252, 246, 0.92);
   --surface-strong: #fffdf9;
   --ink: #101114;
-  --slate: #59606a;
+  --slate: #5f6672;
   --line: rgba(16, 17, 20, 0.1);
   --line-strong: rgba(16, 17, 20, 0.18);
   --accent: #b48a58;
   --accent-deep: #8f6638;
-  --shadow-soft: 0 24px 60px -36px rgba(16, 17, 20, 0.24);
-  --shadow-strong: 0 34px 90px -48px rgba(16, 17, 20, 0.42);
+  --shadow-soft: 0 24px 60px -36px rgba(16, 17, 20, 0.22);
+  --shadow-strong: 0 34px 90px -48px rgba(16, 17, 20, 0.38);
   --radius-xl: 2rem;
-  --radius-lg: 1.4rem;
+  --radius-lg: 1.35rem;
   --font-body: "Manrope", "Segoe UI", sans-serif;
   --font-display: "Cormorant Garamond", Georgia, serif;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -34,11 +36,13 @@ body {
 body {
   color: var(--ink);
   font-family: var(--font-body);
-  line-height: 1.55;
+  line-height: 1.6;
   background:
-    radial-gradient(circle at top left, rgba(180, 138, 88, 0.12), transparent 25%),
-    radial-gradient(circle at top right, rgba(224, 228, 233, 0.42), transparent 28%),
+    radial-gradient(circle at top left, rgba(180, 138, 88, 0.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(224, 228, 233, 0.34), transparent 30%),
     linear-gradient(180deg, #faf6f0 0%, #f5f0e8 58%, #f6f1ea 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body::before {
@@ -55,6 +59,12 @@ body::before {
   opacity: 0.24;
 }
 
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -69,6 +79,18 @@ textarea {
 
 button {
   cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+li,
+a,
+span,
+strong,
+small {
+  overflow-wrap: break-word;
 }
 
 ::selection {
@@ -92,7 +114,8 @@ button {
 .eyebrow,
 .panel-label,
 .footer-label,
-.service-index {
+.service-index,
+.mini-label {
   margin: 0 0 0.85rem;
   font-size: 0.74rem;
   line-height: 1;
@@ -113,7 +136,7 @@ button {
 .nav-shell {
   min-height: 5rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 1.2rem;
 }
@@ -122,6 +145,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  min-width: 0;
 }
 
 .brand-badge {
@@ -135,6 +159,7 @@ button {
   background: rgba(255, 255, 255, 0.58);
   font-weight: 800;
   letter-spacing: -0.05em;
+  flex: none;
 }
 
 .brand-name {
@@ -155,8 +180,10 @@ button {
 .site-nav {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1.45rem;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .site-nav a {
@@ -212,7 +239,7 @@ button {
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--ink);
   border-color: var(--line);
   box-shadow: none;
@@ -227,19 +254,23 @@ button {
 .quote-layout,
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  gap: 1.25rem;
 }
 
 .hero {
+  grid-template-columns: minmax(0, 1.12fr) minmax(19rem, 0.88fr);
+  align-items: center;
   min-height: calc(100svh - 5rem);
+}
+
+.quote-layout {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  align-items: start;
+}
+
+.contact-layout {
+  grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.88fr);
+  align-items: start;
 }
 
 h1,
@@ -262,7 +293,7 @@ p {
 
 .hero h1 {
   margin-bottom: 0.9rem;
-  font-size: clamp(3.35rem, 7vw, 6.3rem);
+  font-size: clamp(3rem, 7vw, 6.1rem);
   line-height: 0.9;
   max-width: 10ch;
 }
@@ -273,7 +304,7 @@ p {
 
 .page-hero h1 {
   margin-bottom: 0.85rem;
-  font-size: clamp(3rem, 6vw, 5.1rem);
+  font-size: clamp(2.8rem, 6vw, 4.9rem);
   line-height: 0.92;
 }
 
@@ -292,7 +323,8 @@ p {
 .helper-box p,
 .form-note,
 .success-message span,
-.footer-cta p {
+.footer-cta p,
+.sub-note span {
   color: var(--slate);
 }
 
@@ -330,11 +362,17 @@ p {
 .form-panel,
 .side-panel,
 .cta-panel {
+  min-width: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
-  background: linear-gradient(180deg, rgba(251, 247, 241, 0.92), rgba(255, 255, 255, 0.74));
+  background: linear-gradient(180deg, rgba(251, 247, 241, 0.94), rgba(255, 255, 255, 0.78));
   box-shadow: var(--shadow-soft);
   padding: 1.5rem;
+}
+
+.form-panel,
+.side-panel {
+  width: 100%;
 }
 
 .feature-panel h2 {
@@ -358,10 +396,6 @@ p {
 
 .hero-panel-meta strong {
   font-size: 0.98rem;
-}
-
-.hero-panel-meta span {
-  color: var(--slate);
 }
 
 .section-intro {
@@ -407,7 +441,7 @@ p {
   display: block;
   color: var(--ink);
   font-size: 1rem;
-  margin: 1rem 0 1rem;
+  margin: 1rem 0;
 }
 
 .text-link {
@@ -456,11 +490,13 @@ p {
 }
 
 .on-dark p:last-child,
-.section-dark .process-grid p {
+.section-dark .process-grid p,
+.section-dark .why-card p {
   color: color-mix(in srgb, var(--paper) 70%, transparent);
 }
 
 .why-card {
+  min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1.5rem;
   padding: 1.2rem;
@@ -497,6 +533,7 @@ p {
 }
 
 .offer-list-block {
+  min-width: 0;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.54);
@@ -536,6 +573,10 @@ thead th {
   color: var(--slate);
 }
 
+.side-panel {
+  align-self: start;
+}
+
 .side-panel.sticky {
   position: sticky;
   top: 6.4rem;
@@ -564,10 +605,6 @@ thead th {
   border-top: 1px solid var(--line);
 }
 
-.sub-note span {
-  color: var(--slate);
-}
-
 .form-grid {
   display: grid;
   gap: 1rem;
@@ -578,6 +615,7 @@ thead th {
 }
 
 .field {
+  min-width: 0;
   display: grid;
   gap: 0.45rem;
 }
@@ -591,6 +629,7 @@ thead th {
 .field select,
 .field textarea {
   width: 100%;
+  min-width: 0;
   padding: 0.95rem 1rem;
   color: var(--ink);
   background: var(--surface-strong);
@@ -600,6 +639,11 @@ thead th {
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 10rem;
 }
 
 .field input::placeholder,
@@ -625,6 +669,7 @@ thead th {
 }
 
 .helper-box {
+  min-width: 0;
   border-radius: 1.2rem;
   border: 1px dashed var(--line-strong);
   background: linear-gradient(180deg, rgba(245, 240, 232, 0.74), rgba(255, 255, 255, 0.58));
@@ -663,8 +708,13 @@ thead th {
 }
 
 .contact-meta li {
+  min-width: 0;
   display: grid;
   gap: 0.2rem;
+}
+
+.contact-meta strong {
+  color: var(--ink);
 }
 
 .contact-meta a {
@@ -700,17 +750,19 @@ thead th {
 
 .footer-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) auto auto;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.7fr) minmax(0, 0.7fr);
   gap: 2rem;
   align-items: start;
 }
 
 .footer-brand {
+  min-width: 0;
   display: grid;
   gap: 1rem;
 }
 
 .footer-links {
+  min-width: 0;
   display: grid;
   gap: 0.7rem;
 }
@@ -759,14 +811,19 @@ thead th {
   }
 }
 
+@media (max-width: 1180px) {
+  .footer-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 1080px) {
   .grid-4,
   .reassurance-points {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .grid-3,
-  .footer-shell {
+  .grid-3 {
     grid-template-columns: 1fr;
   }
 }
@@ -818,6 +875,7 @@ thead th {
   }
 
   .grid-4,
+  .reassurance-points,
   .form-grid.two {
     grid-template-columns: 1fr;
   }
