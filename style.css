@@ -282,19 +282,22 @@ nav a.is-active::after {
 }
 
 .hero {
-  grid-template-columns: minmax(0, 1.08fr) minmax(19rem, 0.92fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(18rem, 0.82fr);
   align-items: center;
   min-height: calc(100svh - 5rem);
+  gap: 1.6rem;
 }
 
 .quote-layout {
   grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
   align-items: start;
+  gap: 1.5rem;
 }
 
 .contact-layout {
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
   align-items: start;
+  gap: 1.5rem;
 }
 
 .hero h1,
@@ -303,24 +306,24 @@ nav a.is-active::after {
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  word-spacing: 0.08em;
-  max-width: 12ch;
+  font-size: clamp(2.2rem, 4vw, 3.95rem);
+  line-height: 1.07;
+  letter-spacing: -0.012em;
+  word-spacing: 0.05em;
+  max-width: 15ch;
   margin-bottom: 1.2rem;
 }
 
 .page-hero {
-  max-width: 56rem;
+  max-width: 66rem;
 }
 
 .page-hero h1 {
-  font-size: clamp(2rem, 3.8vw, 3.1rem);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  font-size: clamp(2.05rem, 3.6vw, 3.3rem);
+  line-height: 1.07;
+  letter-spacing: -0.012em;
   word-spacing: 0.05em;
-  max-width: 13ch;
+  max-width: 18ch;
   margin-bottom: 1rem;
 }
 
@@ -333,7 +336,6 @@ nav a.is-active::after {
 .offer-copy p,
 .offer-list-block li,
 .contact-meta span,
-.helper-box p,
 .form-note,
 .success-message span,
 .sub-note span,
@@ -344,13 +346,17 @@ tbody th {
 }
 
 .hero-copy {
-  max-width: 42rem;
+  max-width: 46rem;
 }
 
 .hero-text {
-  max-width: 36rem;
+  max-width: 40rem;
   font-size: 1.02rem;
   line-height: 1.78;
+}
+
+.hero-cluster {
+  white-space: nowrap;
 }
 
 .hero-actions {
@@ -608,10 +614,6 @@ thead th {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.form-grid.three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .field {
   min-width: 0;
   display: grid;
@@ -668,18 +670,6 @@ thead th {
   min-height: 1rem;
   line-height: 1.35;
   color: #8a3e3e;
-}
-
-.helper-box {
-  border-radius: 1.25rem;
-  border: 1px dashed var(--line-strong);
-  background: linear-gradient(180deg, rgba(245, 240, 232, 0.75), rgba(255, 255, 255, 0.55));
-  padding: 1rem;
-}
-
-.helper-box strong {
-  display: block;
-  margin-bottom: 0.35rem;
 }
 
 .form-actions {
@@ -804,6 +794,11 @@ thead th {
   .side-panel.sticky {
     position: static;
   }
+
+  .hero h1,
+  .page-hero h1 {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 900px) {
@@ -834,8 +829,7 @@ thead th {
   }
 
   .grid-3,
-  .form-grid.two,
-  .form-grid.three {
+  .form-grid.two {
     grid-template-columns: 1fr;
   }
 
@@ -856,5 +850,9 @@ thead th {
 
   .why-signature-wrap {
     padding: 1.2rem;
+  }
+
+  .hero-cluster {
+    white-space: normal;
   }
 }
