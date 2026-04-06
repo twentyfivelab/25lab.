@@ -262,6 +262,14 @@ h3 {
   margin: 0;
 }
 
+h2 {
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+}
+
+h3 {
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+}
+
 .hero,
 .quote-layout,
 .contact-layout {
@@ -276,16 +284,17 @@ h3 {
 }
 
 .hero h1,
-.page-hero h1,
-.cta-panel h2 {
+.page-hero h1 {
   font-family: var(--font-display);
-  line-height: 0.98;
-  letter-spacing: -0.05em;
 }
 
 .hero h1 {
-  font-size: clamp(2.9rem, 5.7vw, 5.2rem);
-  max-width: 11ch;
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  word-spacing: 0.08em;
+  max-width: 12ch;
+  margin-bottom: 1.2rem;
 }
 
 .page-hero {
@@ -293,8 +302,12 @@ h3 {
 }
 
 .page-hero h1 {
-  font-size: clamp(2.55rem, 4.8vw, 4.4rem);
-  line-height: 1;
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  word-spacing: 0.05em;
+  max-width: 13ch;
+  margin-bottom: 1rem;
 }
 
 .hero-text,
@@ -321,8 +334,8 @@ h3 {
 
 .hero-text {
   max-width: 36rem;
-  font-size: 1.05rem;
-  line-height: 1.72;
+  font-size: 1.02rem;
+  line-height: 1.78;
 }
 
 .hero-actions {
@@ -373,12 +386,9 @@ h3 {
 .side-panel h2,
 .cta-panel h2 {
   font-family: var(--font-display);
-  line-height: 1.02;
-  letter-spacing: -0.045em;
-}
-
-.feature-panel h2 {
-  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  word-spacing: 0.04em;
 }
 
 .sub-note {
@@ -397,10 +407,6 @@ h3 {
 .section-intro.center {
   text-align: center;
   margin-inline: auto;
-}
-
-.section-intro h2 {
-  font-size: clamp(2rem, 3.4vw, 3.35rem);
 }
 
 .grid-2,
@@ -555,7 +561,7 @@ h3 {
 }
 
 .cta-panel h2 {
-  font-size: clamp(2.2rem, 4.2vw, 4rem);
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
   max-width: 13ch;
   margin-inline: auto;
 }
@@ -576,10 +582,6 @@ h3 {
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.2rem;
-}
-
-.offer-head h2 {
-  font-size: clamp(2rem, 3.2vw, 3rem);
 }
 
 .offer-grid {
@@ -798,146 +800,4 @@ thead th {
   padding: 3.5rem 0 4.2rem;
   background:
     radial-gradient(circle at top left, rgba(184, 137, 83, 0.16), transparent 34%),
-    linear-gradient(180deg, #11151b 0%, #0c0f13 100%);
-  color: var(--paper);
-}
-
-.footer-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 2rem;
-}
-
-.footer-brand {
-  display: grid;
-  gap: 1rem;
-}
-
-.footer-logo {
-  height: auto;
-}
-
-.footer-contact {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  color: color-mix(in srgb, var(--paper) 64%, transparent);
-}
-
-.footer-columns {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-.link-stack {
-  display: grid;
-  gap: 0.7rem;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.delay-1 {
-  transition-delay: 120ms;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-@media (max-width: 1080px) {
-  .grid-4,
-  .reassurance-points {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 1024px) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 980px) {
-  .offer-grid,
-  .quote-layout,
-  .footer-shell,
-  .footer-columns,
-  .process-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .side-panel.sticky {
-    position: static;
-  }
-}
-
-@media (max-width: 900px) {
-  .nav-shell,
-  .hero,
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-shell {
-    padding-block: 0.85rem;
-  }
-
-  nav {
-    justify-content: flex-start;
-  }
-
-  .hero h1 {
-    max-width: 12ch;
-  }
-}
-
-@media (max-width: 760px) {
-  .container {
-    width: min(1180px, calc(100% - 1.2rem));
-  }
-
-  .section {
-    padding: 4.4rem 0;
-  }
-
-  .grid-4,
-  .reassurance-points,
-  .form-grid.two,
-  .form-grid.three {
-    grid-template-columns: 1fr;
-  }
-
-  .offer-head,
-  .form-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .why-signature-wrap {
-    padding: 1.2rem;
-  }
-}
+    linear-gradient(180
