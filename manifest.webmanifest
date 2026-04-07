@@ -1,0 +1,17 @@
+{
+  "name": "25 lab.",
+  "short_name": "25 lab.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e8",
+  "theme_color": "#0f1115",
+  "description": "Studio digital premium pour sites web sur mesure.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
