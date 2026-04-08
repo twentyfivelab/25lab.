@@ -1,22 +1,40 @@
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.15 }
-);
+const revealElements = document.querySelectorAll(".reveal");
 
-document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+if (revealElements.length) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  revealElements.forEach((element) => observer.observe(element));
+}
+
+function isValidUrl(value) {
+  try {
+    const normalizedValue = value.startsWith("http://") || value.startsWith("https://")
+      ? value
+      : `https://${value}`;
+
+    new URL(normalizedValue);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 function getErrorMessage(field) {
   const value = field.value.trim();
+  const isRequired = field.hasAttribute("data-required");
 
   if (!value) {
-    return "Ce champ est requis.";
+    return isRequired ? "Ce champ est requis." : "";
   }
 
   if (field.type === "email") {
@@ -26,7 +44,11 @@ function getErrorMessage(field) {
     }
   }
 
-  if (field.tagName === "TEXTAREA" && value.length < 16) {
+  if (field.type === "url" && !isValidUrl(value)) {
+    return "Indiquez une URL valide.";
+  }
+
+  if (field.tagName === "TEXTAREA" && value.length < 24) {
     return "Merci de détailler un peu plus votre demande.";
   }
 
@@ -50,7 +72,9 @@ function clearFieldError(field) {
 }
 
 document.querySelectorAll("[data-form]").forEach((form) => {
-  const fields = [...form.querySelectorAll("[data-required]")];
+  const fields = [
+    ...form.querySelectorAll("[data-required], [data-optional-validate]")
+  ];
   const successMessage = form.parentElement.querySelector(".success-message");
   const submitButton = form.querySelector("button[type='submit']");
   const initialLabel = submitButton ? submitButton.textContent : "";
@@ -67,6 +91,7 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 
     fields.forEach((field) => {
       const message = getErrorMessage(field);
+
       if (message) {
         showFieldError(field, message);
         hasError = true;
