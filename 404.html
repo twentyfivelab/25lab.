@@ -6,9 +6,9 @@
     <title>Page introuvable | 25 lab.</title>
     <meta
       name="description"
-      content="La page demandée est introuvable. Revenez à l'accueil de 25 lab. ou demandez un devis pour un site web premium, un audit gratuit ou une présence digitale plus forte."
+      content="La page demandée est introuvable. Revenez à l'accueil de 25 lab. ou demandez un devis pour un site premium, un audit gratuit ou une présence digitale plus forte."
     />
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="noindex,follow" />
     <link rel="canonical" href="https://25lab.fr/404.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="25 lab." />
@@ -37,7 +37,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
@@ -48,31 +48,34 @@
             <span class="brand-wordmark"><strong>lab.</strong></span>
           </span>
         </a>
-        <nav aria-label="Navigation principale">
+
+        <nav class="site-nav" aria-label="Navigation principale">
           <a href="index.html">Accueil</a>
-          <a href="creations.html">Créations</a>
+          <a href="creation.html">Création</a>
           <a href="temoignages.html">Témoignages</a>
           <a href="devis.html">Devis</a>
           <a href="contact.html">Contact</a>
         </nav>
-        <a class="btn ghost small" href="devis.html">Demander un devis</a>
+
+        <a class="btn btn-ghost btn-small" href="devis.html">Demander un devis</a>
       </div>
     </header>
 
     <main class="section container error-shell">
-      <article class="cta-panel error-card reveal">
+      <article class="error-card reveal">
         <p class="eyebrow">Erreur 404</p>
         <h1 class="split-title">
           <span class="title-line">La page demandée</span>
           <span class="title-line">n'est plus disponible.</span>
         </h1>
         <p>
-          L'adresse peut avoir changé. Vous pouvez revenir à l'accueil, consulter les témoignages ou
-          demander un devis pour cadrer votre projet.
+          L'adresse peut avoir changé. Vous pouvez revenir à l'accueil, consulter la page création
+          ou demander un devis pour cadrer votre projet.
         </p>
+
         <div class="hero-actions center">
           <a class="btn" href="index.html">Retour à l'accueil</a>
-          <a class="btn ghost" href="devis.html">Demander un devis</a>
+          <a class="btn btn-ghost" href="creation.html">Voir la création</a>
         </div>
       </article>
     </main>
@@ -91,30 +94,36 @@
             présence digitale plus forte.
           </p>
         </div>
+
         <div class="footer-block">
           <strong>Navigation</strong>
           <a href="index.html">Accueil</a>
-          <a href="creations.html">Créations</a>
+          <a href="creation.html">Création</a>
           <a href="temoignages.html">Témoignages</a>
           <a href="devis.html">Devis</a>
           <a href="contact.html">Contact</a>
         </div>
+
         <div class="footer-block">
           <strong>Accompagnement</strong>
-          <a href="creations.html#one-page">Site one page</a>
-          <a href="creations.html#site-vitrine">Site vitrine</a>
-          <a href="creations.html#e-commerce">Site e-commerce</a>
+          <a href="creation.html#one-page">Site one page</a>
+          <a href="creation.html#site-vitrine">Site vitrine</a>
+          <a href="creation.html#e-commerce">Site e-commerce</a>
           <a href="devis.html#audit-gratuit">Audit gratuit</a>
         </div>
+
         <div class="footer-block">
           <strong>Contact</strong>
           <a href="mailto:hello@25lab.fr">hello@25lab.fr</a>
           <span>Réponse initiale sous 48h ouvrées</span>
-          <span>France, accompagnement à distance</span>
+          <span>Accompagnement à distance en Europe, en Suisse et au Royaume-Uni.</span>
+          <div class="footer-actions">
+            <a class="btn btn-mix" href="devis.html">Demander un devis / audit gratuit</a>
+          </div>
         </div>
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
