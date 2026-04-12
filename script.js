@@ -1,12 +1,12 @@
 var revealElements = document.querySelectorAll(".reveal");
 
 if (revealElements.length && "IntersectionObserver" in window) {
-  var revealObserver = new IntersectionObserver(
+  var observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -14,7 +14,7 @@ if (revealElements.length && "IntersectionObserver" in window) {
   );
 
   revealElements.forEach(function (element) {
-    revealObserver.observe(element);
+    observer.observe(element);
   });
 } else {
   revealElements.forEach(function (element) {
@@ -133,7 +133,6 @@ document.querySelectorAll("[data-form]").forEach(function (form) {
 
     window.setTimeout(function () {
       form.reset();
-
       fields.forEach(function (field) {
         clearFieldError(field);
       });
@@ -146,7 +145,7 @@ document.querySelectorAll("[data-form]").forEach(function (form) {
       if (successMessage) {
         successMessage.classList.add("is-visible");
       }
-    }, 900);
+    }, 1000);
   });
 });
 
@@ -163,7 +162,8 @@ function initComparisonShell(shell) {
 
   function updateScrollState() {
     var isScrollable = scroller.scrollWidth - scroller.clientWidth > 12;
-    var isAtEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 8;
+    var isAtEnd =
+      scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 8;
 
     shell.classList.toggle("is-scrollable", isScrollable);
     shell.classList.toggle("is-at-end", !isScrollable || isAtEnd);
