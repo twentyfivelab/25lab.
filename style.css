@@ -309,12 +309,12 @@ nav a.is-active::after {
   padding: 0.82rem 1.28rem;
   border: 1px solid transparent;
   border-radius: 999px;
-  background: linear-gradient(135deg, #11151b 0%, #252e38 100%);
+  background: linear-gradient(180deg, #13171d 0%, #0d1015 100%);
   color: var(--paper);
   font-weight: 600;
   letter-spacing: -0.01em;
   text-align: center;
-  box-shadow: 0 18px 38px -24px rgba(16, 18, 23, 0.64);
+  box-shadow: 0 18px 38px -24px rgba(16, 18, 23, 0.52);
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
@@ -326,42 +326,34 @@ nav a.is-active::after {
 .btn:hover,
 .btn:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 24px 44px -28px rgba(16, 18, 23, 0.72);
+  box-shadow: 0 24px 44px -28px rgba(16, 18, 23, 0.6);
+  background: linear-gradient(180deg, #181d24 0%, #10141a 100%);
 }
 
 .btn.ghost {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.6)),
-    radial-gradient(circle at top right, rgba(236, 217, 141, 0.26), transparent 80%);
-  color: var(--ink);
-  border-color: color-mix(in srgb, var(--bronze) 12%, var(--line));
-  box-shadow: 0 12px 28px -30px rgba(16, 18, 23, 0.34);
+  background: linear-gradient(180deg, #171b22 0%, #0f1318 100%);
+  color: var(--paper);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 32px -26px rgba(16, 18, 23, 0.48);
 }
 
 .btn.ghost:hover,
 .btn.ghost:focus-visible {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.74)),
-    radial-gradient(circle at top right, rgba(217, 195, 239, 0.26), transparent 80%);
-  border-color: rgba(182, 129, 86, 0.24);
+  background: linear-gradient(180deg, #1a2028 0%, #11161c 100%);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .btn.mix {
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--lilac) 48%, white),
-      color-mix(in srgb, var(--peach) 50%, white) 54%,
-      color-mix(in srgb, var(--gold) 52%, white)
-    );
-  color: var(--ink);
-  border-color: color-mix(in srgb, var(--bronze) 18%, var(--line-strong));
-  box-shadow: 0 20px 42px -28px rgba(16, 18, 23, 0.26);
+  background: linear-gradient(180deg, #11161c 0%, #0c0f14 100%);
+  color: var(--paper);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 38px -24px rgba(16, 18, 23, 0.52);
 }
 
 .btn.mix:hover,
 .btn.mix:focus-visible {
-  box-shadow: 0 24px 48px -30px rgba(16, 18, 23, 0.3);
+  box-shadow: 0 24px 44px -28px rgba(16, 18, 23, 0.6);
+  background: linear-gradient(180deg, #181d24 0%, #10141a 100%);
 }
 
 .btn.small {
@@ -828,7 +820,7 @@ tbody th,
 
 .review-meta span {
   font-size: 0.92rem;
-  color: var(--slate);
+  color: var(--slate-strong);
 }
 
 .audit-banner,
@@ -1351,7 +1343,7 @@ tbody th {
   }
 }
 
-@media (min-width: 981px) {
+@media (min-width: 1081px) {
   .one-line-desktop,
   .desktop-nowrap {
     white-space: nowrap;
