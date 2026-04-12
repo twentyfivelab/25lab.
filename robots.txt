@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /404.html
 
 Sitemap: https://25lab.fr/sitemap.xml
