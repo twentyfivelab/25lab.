@@ -36,7 +36,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
@@ -47,14 +47,16 @@
             <span class="brand-wordmark"><strong>lab.</strong></span>
           </span>
         </a>
-        <nav aria-label="Navigation principale">
+
+        <nav class="site-nav" aria-label="Navigation principale">
           <a href="index.html">Accueil</a>
-          <a href="creations.html">Créations</a>
+          <a href="creation.html">Création</a>
           <a href="temoignages.html">Témoignages</a>
           <a href="devis.html">Devis</a>
           <a class="is-active" aria-current="page" href="contact.html">Contact</a>
         </nav>
-        <a class="btn ghost small" href="devis.html">Demander un devis</a>
+
+        <a class="btn btn-ghost btn-small" href="devis.html">Demander un devis</a>
       </div>
     </header>
 
@@ -76,12 +78,12 @@
         <article class="form-panel reveal">
           <div class="section-intro">
             <p class="eyebrow">Message</p>
-            <h2 class="split-title locked-lines">
+            <h2 class="split-title">
               <span class="title-line">Expliquez brièvement</span>
               <span class="title-line">votre contexte et votre demande.</span>
             </h2>
-            <p class="desktop-single-line">
-              L'objectif est simple : ouvrir un échange clair, sans friction ni surcharge d'informations.
+            <p>
+              L'objectif est simple&nbsp;: ouvrir un échange clair, sans friction ni surcharge d'informations.
             </p>
           </div>
 
@@ -91,23 +93,27 @@
               <input data-required type="text" name="name" placeholder="Votre nom ou celui de votre entreprise" aria-invalid="false" />
               <small></small>
             </label>
+
             <div class="form-grid two">
               <label class="field">
                 <span>Email</span>
                 <input data-required type="email" name="email" placeholder="vous@entreprise.fr" aria-invalid="false" />
                 <small></small>
               </label>
+
               <label class="field">
                 <span>Téléphone</span>
                 <input type="tel" name="phone" placeholder="Optionnel" aria-invalid="false" />
                 <small></small>
               </label>
             </div>
+
             <label class="field">
               <span>Sujet</span>
               <input data-required type="text" name="subject" placeholder="Ex. audit gratuit, refonte, visibilité Google..." aria-invalid="false" />
               <small></small>
             </label>
+
             <label class="field">
               <span>Message</span>
               <textarea
@@ -119,6 +125,7 @@
               ></textarea>
               <small></small>
             </label>
+
             <div class="form-actions">
               <button class="btn" type="submit">Envoyer le message</button>
               <p class="form-note">Réponse initiale sous 48h ouvrées.</p>
@@ -136,10 +143,11 @@
             <p class="eyebrow">Coordonnées</p>
             <h2>Une relation sobre, réactive et orientée solution.</h2>
             <p>
-              Un échange direct, une lecture claire du besoin et une réponse structurée, qu'il
-              s'agisse d'un site, d'un audit gratuit, de visibilité locale ou d'automatisations utiles.
+              Un échange direct, une lecture claire du besoin et une réponse structurée, qu'il s'agisse
+              d'un site, d'un audit gratuit, de visibilité locale ou d'automatisations utiles.
             </p>
           </div>
+
           <ul class="contact-meta">
             <li>
               <strong>Email</strong>
@@ -154,10 +162,11 @@
               <span>Site premium, audit gratuit, visibilité Google, présence locale, automatisations utiles</span>
             </li>
           </ul>
+
           <div class="sub-note">
-            <strong>Besoin déjà cadré ?</strong>
+            <strong>Besoin déjà cadré&nbsp;?</strong>
             <p>Le formulaire de devis permet d'aller plus vite si le projet ou l'audit est déjà bien défini.</p>
-            <a class="btn" href="devis.html">Aller vers le devis</a>
+            <a class="btn btn-ghost" href="devis.html">Aller vers le devis</a>
           </div>
         </aside>
       </section>
@@ -165,15 +174,18 @@
       <section class="section container">
         <article class="cta-panel reveal">
           <p class="eyebrow">Étape suivante</p>
-          <h2 class="desktop-single-line">
-            Si le besoin est déjà clair, passez directement par la <span class="title-keep">demande de devis</span>.
+          <h2 class="stack-lines">
+            <span>Si le besoin est déjà clair,</span>
+            <span>passez directement par la demande de devis.</span>
           </h2>
-          <p class="desktop-single-line">
-            C'est la meilleure façon de cadrer rapidement le projet, le format du site et le niveau d'accompagnement attendu.
+          <p>
+            C'est la meilleure façon de cadrer rapidement le projet, le format du site et le niveau
+            d'accompagnement attendu.
           </p>
+
           <div class="hero-actions center">
-            <a class="btn" href="devis.html">Demander un devis</a>
-            <a class="btn ghost" href="temoignages.html">Voir les témoignages</a>
+            <a class="btn btn-mix" href="devis.html">Demander un devis / audit gratuit</a>
+            <a class="btn btn-ghost" href="temoignages.html">Voir les témoignages</a>
           </div>
         </article>
       </section>
@@ -193,30 +205,36 @@
             présence digitale plus forte.
           </p>
         </div>
+
         <div class="footer-block">
           <strong>Navigation</strong>
           <a href="index.html">Accueil</a>
-          <a href="creations.html">Créations</a>
+          <a href="creation.html">Création</a>
           <a href="temoignages.html">Témoignages</a>
           <a href="devis.html">Devis</a>
           <a href="contact.html">Contact</a>
         </div>
+
         <div class="footer-block">
           <strong>Accompagnement</strong>
-          <a href="creations.html#one-page">Site one page</a>
-          <a href="creations.html#site-vitrine">Site vitrine</a>
-          <a href="creations.html#e-commerce">Site e-commerce</a>
+          <a href="creation.html#one-page">Site one page</a>
+          <a href="creation.html#site-vitrine">Site vitrine</a>
+          <a href="creation.html#e-commerce">Site e-commerce</a>
           <a href="devis.html#audit-gratuit">Audit gratuit</a>
         </div>
+
         <div class="footer-block">
           <strong>Contact</strong>
           <a href="mailto:hello@25lab.fr">hello@25lab.fr</a>
           <span>Réponse initiale sous 48h ouvrées</span>
-          <span>France, accompagnement à distance</span>
+          <span>Accompagnement à distance en Europe, en Suisse et au Royaume-Uni.</span>
+          <div class="footer-actions">
+            <a class="btn btn-mix" href="devis.html">Demander un devis / audit gratuit</a>
+          </div>
         </div>
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
