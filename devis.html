@@ -36,7 +36,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header class="site-header">
@@ -47,21 +47,19 @@
             <span class="brand-wordmark"><strong>lab.</strong></span>
           </span>
         </a>
-
-        <nav class="site-nav" aria-label="Navigation principale">
+        <nav aria-label="Navigation principale">
           <a href="index.html">Accueil</a>
-          <a href="creation.html">Création</a>
+          <a href="creation.html">Créations</a>
           <a href="temoignages.html">Témoignages</a>
           <a class="is-active" aria-current="page" href="devis.html">Devis</a>
           <a href="contact.html">Contact</a>
         </nav>
-
-        <a class="btn btn-ghost btn-small" href="devis.html">Demander un devis</a>
+        <a class="btn ghost small" href="devis.html">Demander un devis</a>
       </div>
     </header>
 
     <main>
-      <section class="page-hero compact section container">
+      <section class="page-hero section container compact">
         <p class="eyebrow">Demande de devis</p>
         <h1 class="split-title">
           <span class="title-line">Parlez du projet.</span>
@@ -71,13 +69,12 @@
           Création, refonte, visibilité Google, présence locale ou audit gratuit d'un site existant&nbsp;:
           l'objectif est de vous orienter vers la solution la plus juste.
         </p>
-
         <div class="hero-actions">
-          <a class="btn btn-ghost" href="#audit-gratuit">Découvrir l'audit gratuit</a>
+          <a class="btn ghost" href="#audit-gratuit">Découvrir l'audit gratuit</a>
         </div>
       </section>
 
-      <section class="section section-top-tight container quote-layout">
+      <section class="section container quote-layout section-top-tight">
         <aside class="side-panel sticky reveal">
           <div class="section-intro">
             <p class="eyebrow">Process</p>
@@ -90,13 +87,11 @@
               structure réellement utile pour votre activité.
             </p>
           </div>
-
-          <ol class="process-list">
+          <ol>
             <li><span>1</span><p>Vous décrivez votre activité, votre besoin et ce qui doit progresser.</p></li>
             <li><span>2</span><p>25 lab. analyse le contexte, les freins actuels et le bon cadre de réponse.</p></li>
             <li><span>3</span><p>Vous recevez une lecture claire, orientée actions concrètes et périmètre cohérent.</p></li>
           </ol>
-
           <div class="sub-note">
             <strong>Réponse initiale</strong>
             <p>Sous 48h ouvrées, avec une lecture sérieuse du projet, de la visibilité et du potentiel d'amélioration.</p>
@@ -111,8 +106,8 @@
               <span class="title-line">pour cadrer une bonne réponse.</span>
             </h2>
             <p>
-              Pas besoin d'avoir tout parfaitement défini. L'essentiel est de transmettre le contexte,
-              l'objectif et le niveau d'exigence attendu.
+              Pas besoin d'avoir tout parfaitement défini. L'essentiel est de transmettre le
+              contexte, l'objectif et le niveau d'exigence attendu.
             </p>
           </div>
 
@@ -123,7 +118,6 @@
                 <input data-required type="text" name="firstName" placeholder="Ex. Claire" aria-invalid="false" />
                 <small></small>
               </label>
-
               <label class="field">
                 <span>Nom</span>
                 <input data-required type="text" name="lastName" placeholder="Ex. Martin" aria-invalid="false" />
@@ -137,7 +131,6 @@
                 <input data-required type="email" name="email" placeholder="vous@entreprise.fr" aria-invalid="false" />
                 <small></small>
               </label>
-
               <label class="field">
                 <span>Téléphone</span>
                 <input type="tel" name="phone" placeholder="Optionnel" aria-invalid="false" />
@@ -151,7 +144,6 @@
                 <input data-required type="text" name="company" placeholder="Nom de votre structure" aria-invalid="false" />
                 <small></small>
               </label>
-
               <label class="field">
                 <span>Activité</span>
                 <input data-required type="text" name="activity" placeholder="Ex. artisanat, santé, conseil, commerce..." aria-invalid="false" />
@@ -172,7 +164,6 @@
                 </select>
                 <small></small>
               </label>
-
               <label class="field">
                 <span>Type de site souhaité</span>
                 <select data-required name="siteType" aria-invalid="false">
@@ -198,7 +189,6 @@
                 />
                 <small></small>
               </label>
-
               <label class="field">
                 <span>Priorité actuelle</span>
                 <select data-required name="priority" aria-invalid="false">
@@ -225,7 +215,6 @@
                 </select>
                 <small></small>
               </label>
-
               <label class="field">
                 <span>Visibilité locale</span>
                 <select name="localPresence" aria-invalid="false">
@@ -252,9 +241,7 @@
 
             <div class="form-actions">
               <button class="btn" type="submit">Envoyer la demande</button>
-              <p class="form-note">
-                Si un site existe déjà, ajoutez son URL pour orienter plus finement l'audit ou la recommandation.
-              </p>
+              <p class="form-note">Si un site existe déjà, ajoutez son URL pour orienter plus finement l'audit ou la recommandation.</p>
             </div>
           </form>
 
@@ -272,14 +259,14 @@
             <h2 class="one-line-desktop">Avant de refaire, il faut comprendre ce qui freine.</h2>
             <p class="stack-lines">
               <span class="desktop-nowrap">
-                Un site peut être élégant sans être efficace. L'audit permet de voir ce qu'il produit réellement&nbsp;:
+                Un site peut être élégant sans être efficace. L'audit permet de voir ce qu'il
+                produit réellement&nbsp;:
               </span>
               <span>visibilité, crédibilité, fluidité, automatisation et marge de progression.</span>
             </p>
           </div>
-
           <div class="grid-3 audit-grid">
-            <article class="card accent-peach reveal">
+            <article class="audit-card accent-peach reveal">
               <span class="mini-label">01</span>
               <h3>Crédibilité et conversion</h3>
               <p>
@@ -293,13 +280,12 @@
                 <li>Manque à gagner discret mais réel</li>
               </ul>
             </article>
-
-            <article class="card accent-lilac reveal">
+            <article class="audit-card accent-lilac reveal">
               <span class="mini-label">02</span>
               <h3>Google, SEO et présence locale</h3>
               <p>
-                L'enjeu n'est pas seulement d'être en ligne, mais d'être trouvé. L'audit regarde ce qui
-                freine la découvrabilité et la cohérence locale.
+                L'enjeu n'est pas seulement d'être en ligne, mais d'être trouvé. L'audit regarde ce
+                qui freine la découvrabilité et la cohérence locale.
               </p>
               <ul class="value-list">
                 <li>Base SEO et structure des pages</li>
@@ -308,13 +294,12 @@
                 <li>Google Ads si le contexte le justifie</li>
               </ul>
             </article>
-
-            <article class="card accent-gold reveal">
+            <article class="audit-card accent-gold reveal">
               <span class="mini-label">03</span>
               <h3>IA et automatisations utiles</h3>
               <p>
-                Visibilité, crédibilité, fluidité, automatisation&nbsp;: l'enjeu est global. L'audit met
-                aussi en lumière les gains de temps possibles.
+                Visibilité, crédibilité, fluidité, automatisation&nbsp;: l'enjeu est global. L'audit
+                met aussi en lumière les gains de temps possibles.
               </p>
               <ul class="value-list">
                 <li>Formulaires plus intelligents</li>
@@ -332,14 +317,14 @@
               <span>où se situe le manque à gagner, ce qui freine la conversion et ce qui mérite d'être corrigé en priorité.</span>
             </p>
             <p>
-              Le but est simple&nbsp;: hiérarchiser les bons leviers, éviter les faux chantiers et vous
-              montrer ce qui mérite d'être corrigé en premier selon votre activité.
+              Le but est simple&nbsp;: hiérarchiser les bons leviers, éviter les faux chantiers et
+              vous montrer ce qui mérite d'être corrigé en premier selon votre activité.
             </p>
           </article>
 
           <div class="hero-actions center">
             <a class="btn" href="#brief-form">Demander un audit gratuit</a>
-            <a class="btn btn-ghost" href="contact.html">Poser une question</a>
+            <a class="btn ghost" href="contact.html">Poser une question</a>
           </div>
         </div>
       </section>
@@ -359,36 +344,33 @@
             présence digitale plus forte.
           </p>
         </div>
-
         <div class="footer-block">
           <strong>Navigation</strong>
           <a href="index.html">Accueil</a>
-          <a href="creation.html">Création</a>
+          <a href="creation.html">Créations</a>
           <a href="temoignages.html">Témoignages</a>
           <a href="devis.html">Devis</a>
           <a href="contact.html">Contact</a>
         </div>
-
         <div class="footer-block">
           <strong>Accompagnement</strong>
           <a href="creation.html#one-page">Site one page</a>
           <a href="creation.html#site-vitrine">Site vitrine</a>
           <a href="creation.html#e-commerce">Site e-commerce</a>
-          <a href="#audit-gratuit">Audit gratuit</a>
+          <a href="devis.html#audit-gratuit">Audit gratuit</a>
         </div>
-
         <div class="footer-block">
           <strong>Contact</strong>
           <a href="mailto:hello@25lab.fr">hello@25lab.fr</a>
           <span>Réponse initiale sous 48h ouvrées</span>
           <span>Accompagnement à distance en Europe, en Suisse et au Royaume-Uni.</span>
           <div class="footer-actions">
-            <a class="btn btn-mix" href="devis.html">Demander un devis / audit gratuit</a>
+            <a class="btn mix" href="devis.html">Demander un devis / audit gratuit</a>
           </div>
         </div>
       </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
