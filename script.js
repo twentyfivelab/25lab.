@@ -1,233 +1,421 @@
-var revealElements = document.querySelectorAll(".reveal");
+(() => {
+  "use strict";
 
-if (revealElements.length && "IntersectionObserver" in window) {
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
+  const doc = document;
+  const win = window;
+  const prefersReducedMotion =
+    win.matchMedia && win.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function onReady(callback) {
+    if (doc.readyState === "loading") {
+      doc.addEventListener("DOMContentLoaded", callback, { once: true });
+      return;
+    }
+
+    callback();
+  }
+
+  function initRevealAnimations() {
+    const elements = Array.from(doc.querySelectorAll(".reveal"));
+
+    if (!elements.length) {
+      return;
+    }
+
+    if (prefersReducedMotion || !("IntersectionObserver" in win)) {
+      elements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
           entry.target.classList.add("is-visible");
           observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -6% 0px"
+      }
+    );
 
-  revealElements.forEach(function (element) {
-    observer.observe(element);
-  });
-} else {
-  revealElements.forEach(function (element) {
-    element.classList.add("is-visible");
-  });
-}
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
 
-function isValidUrl(value) {
-  try {
-    var normalizedValue = value;
+  function normalizeUrl(value) {
+    const trimmedValue = value.trim();
 
-    if (!value.match(/^https?:\/\//i)) {
-      normalizedValue = "https://" + value;
+    if (!trimmedValue) {
+      return "";
     }
 
-    new URL(normalizedValue);
-    return true;
-  } catch (error) {
+    if (/^https?:\/\//i.test(trimmedValue)) {
+      return trimmedValue;
+    }
+
+    return `https://${trimmedValue}`;
+  }
+
+  function isValidUrl(value) {
+    try {
+      const normalizedValue = normalizeUrl(value);
+
+      if (!normalizedValue) {
+        return false;
+      }
+
+      const parsedUrl = new URL(normalizedValue);
+
+      return Boolean(parsedUrl.hostname && parsedUrl.hostname.includes("."));
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function getFieldWrapper(field) {
+    return field.closest(".field") || field.parentElement;
+  }
+
+  function getFieldHelp(field) {
+    const wrapper = getFieldWrapper(field);
+
+    if (!wrapper) {
+      return null;
+    }
+
+    return wrapper.querySelector("small");
+  }
+
+  function getFieldValue(field) {
+    return typeof field.value === "string" ? field.value.trim() : "";
+  }
+
+  function getErrorMessage(field) {
+    const value = getFieldValue(field);
+    const isRequired = field.hasAttribute("data-required");
+
+    if (!value) {
+      return isRequired ? "Ce champ est requis." : "";
+    }
+
+    if (field.type === "email") {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(value)) {
+        return "Indiquez une adresse email valide.";
+      }
+    }
+
+    if (field.type === "url" && !isValidUrl(value)) {
+      return "Indiquez une URL valide.";
+    }
+
+    if (field.tagName === "TEXTAREA" && value.length < 24) {
+      return "Merci de détailler un peu plus votre demande.";
+    }
+
+    return "";
+  }
+
+  function setFieldError(field, message) {
+    const helpNode = getFieldHelp(field);
+
+    field.setAttribute("aria-invalid", "true");
+
+    if (helpNode) {
+      helpNode.textContent = message;
+    }
+  }
+
+  function clearFieldError(field) {
+    const helpNode = getFieldHelp(field);
+
+    field.setAttribute("aria-invalid", "false");
+
+    if (helpNode) {
+      helpNode.textContent = "";
+    }
+  }
+
+  function validateField(field, forceDisplay) {
+    const message = getErrorMessage(field);
+    const shouldDisplayMessage =
+      forceDisplay || field.dataset.touched === "true" || field.getAttribute("aria-invalid") === "true";
+
+    if (!message) {
+      clearFieldError(field);
+      return true;
+    }
+
+    if (shouldDisplayMessage) {
+      setFieldError(field, message);
+    }
+
     return false;
   }
-}
 
-function getErrorMessage(field) {
-  var value = field.value.trim();
-  var isRequired = field.hasAttribute("data-required");
+  function findSuccessMessage(form) {
+    let sibling = form.nextElementSibling;
 
-  if (!value) {
-    return isRequired ? "Ce champ est requis." : "";
-  }
-
-  if (field.type === "email") {
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(value)) {
-      return "Indiquez une adresse email valide.";
-    }
-  }
-
-  if (field.type === "url" && !isValidUrl(value)) {
-    return "Indiquez une URL valide.";
-  }
-
-  if (field.tagName === "TEXTAREA" && value.length < 24) {
-    return "Merci de détailler un peu plus votre demande.";
-  }
-
-  return "";
-}
-
-function showFieldError(field, message) {
-  var errorNode = field.parentElement.querySelector("small");
-
-  field.setAttribute("aria-invalid", "true");
-
-  if (errorNode) {
-    errorNode.textContent = message;
-  }
-}
-
-function clearFieldError(field) {
-  var errorNode = field.parentElement.querySelector("small");
-
-  field.setAttribute("aria-invalid", "false");
-
-  if (errorNode) {
-    errorNode.textContent = "";
-  }
-}
-
-document.querySelectorAll("[data-form]").forEach(function (form) {
-  var fields = Array.prototype.slice.call(
-    form.querySelectorAll("[data-required], [data-optional-validate]")
-  );
-  var successMessage = form.parentElement.querySelector(".success-message");
-  var submitButton = form.querySelector("button[type='submit']");
-  var initialLabel = submitButton ? submitButton.textContent : "";
-
-  fields.forEach(function (field) {
-    field.addEventListener("input", function () {
-      clearFieldError(field);
-    });
-
-    field.addEventListener("change", function () {
-      clearFieldError(field);
-    });
-  });
-
-  form.addEventListener("submit", function (event) {
-    var hasError = false;
-
-    event.preventDefault();
-
-    fields.forEach(function (field) {
-      var message = getErrorMessage(field);
-
-      if (message) {
-        showFieldError(field, message);
-        hasError = true;
-      } else {
-        clearFieldError(field);
+    while (sibling) {
+      if (sibling.classList && sibling.classList.contains("success-message")) {
+        return sibling;
       }
+
+      sibling = sibling.nextElementSibling;
+    }
+
+    const wrapper = form.closest(".form-panel, .side-panel, article, section");
+
+    if (!wrapper) {
+      return null;
+    }
+
+    return wrapper.querySelector(".success-message");
+  }
+
+  function focusFirstInvalidField(fields) {
+    const invalidField = fields.find((field) => field.getAttribute("aria-invalid") === "true");
+
+    if (!invalidField) {
+      return;
+    }
+
+    invalidField.focus({ preventScroll: false });
+  }
+
+  function resetFormState(form, fields, successMessage, submitButton, initialLabel) {
+    form.reset();
+
+    fields.forEach((field) => {
+      delete field.dataset.touched;
+      clearFieldError(field);
     });
 
-    if (hasError) {
-      return;
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = initialLabel;
+      submitButton.removeAttribute("aria-busy");
     }
 
     if (successMessage) {
-      successMessage.classList.remove("is-visible");
+      successMessage.classList.add("is-visible");
+    }
+  }
+
+  function initForms() {
+    const forms = Array.from(doc.querySelectorAll("[data-form]"));
+
+    if (!forms.length) {
+      return;
     }
 
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = "Envoi en cours...";
-    }
+    forms.forEach((form) => {
+      const fields = Array.from(
+        form.querySelectorAll("[data-required], [data-optional-validate]")
+      );
+      const successMessage = findSuccessMessage(form);
+      const submitButton = form.querySelector("button[type='submit']");
+      const initialLabel = submitButton ? submitButton.textContent : "";
 
-    window.setTimeout(function () {
-      form.reset();
-      fields.forEach(function (field) {
+      fields.forEach((field) => {
         clearFieldError(field);
+
+        field.addEventListener("input", () => {
+          field.dataset.touched = "true";
+          validateField(field, false);
+        });
+
+        field.addEventListener("change", () => {
+          field.dataset.touched = "true";
+          validateField(field, true);
+        });
+
+        field.addEventListener("blur", () => {
+          field.dataset.touched = "true";
+          validateField(field, true);
+        });
       });
 
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = initialLabel;
-      }
+      form.addEventListener("submit", (event) => {
+        let hasError = false;
 
-      if (successMessage) {
-        successMessage.classList.add("is-visible");
-      }
-    }, 1000);
-  });
-});
+        event.preventDefault();
 
-function initComparisonShell(shell) {
-  var scroller = shell.querySelector("[data-scrollable]");
+        if (successMessage) {
+          successMessage.classList.remove("is-visible");
+        }
 
-  if (!scroller) {
-    return;
+        fields.forEach((field) => {
+          field.dataset.touched = "true";
+
+          if (!validateField(field, true)) {
+            hasError = true;
+          }
+        });
+
+        if (hasError) {
+          focusFirstInvalidField(fields);
+          return;
+        }
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Envoi en cours...";
+          submitButton.setAttribute("aria-busy", "true");
+        }
+
+        win.setTimeout(() => {
+          resetFormState(form, fields, successMessage, submitButton, initialLabel);
+        }, 700);
+      });
+    });
   }
 
-  var isPointerDown = false;
-  var startX = 0;
-  var startScrollLeft = 0;
+  function initMouseDrag(scroller, shell) {
+    let pointerIsDown = false;
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
 
-  function updateScrollState() {
-    var isScrollable = scroller.scrollWidth - scroller.clientWidth > 12;
-    var isAtEnd =
-      scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 8;
+    function releasePointer(event) {
+      if (
+        event &&
+        typeof event.pointerId !== "undefined" &&
+        scroller.hasPointerCapture &&
+        scroller.hasPointerCapture(event.pointerId)
+      ) {
+        scroller.releasePointerCapture(event.pointerId);
+      }
+    }
 
-    shell.classList.toggle("is-scrollable", isScrollable);
-    shell.classList.toggle("is-at-end", !isScrollable || isAtEnd);
+    function endDrag(event) {
+      if (!pointerIsDown) {
+        return;
+      }
+
+      pointerIsDown = false;
+      isDragging = false;
+      scroller.classList.remove("is-dragging");
+      releasePointer(event);
+    }
+
+    scroller.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "touch" || event.button !== 0) {
+        return;
+      }
+
+      pointerIsDown = true;
+      isDragging = false;
+      startX = event.clientX;
+      startScrollLeft = scroller.scrollLeft;
+
+      if (scroller.setPointerCapture) {
+        scroller.setPointerCapture(event.pointerId);
+      }
+    });
+
+    scroller.addEventListener("pointermove", (event) => {
+      if (!pointerIsDown) {
+        return;
+      }
+
+      const deltaX = event.clientX - startX;
+
+      if (!isDragging && Math.abs(deltaX) < 6) {
+        return;
+      }
+
+      isDragging = true;
+      scroller.classList.add("is-dragging");
+      shell.classList.add("is-hint-dismissed");
+      scroller.scrollLeft = startScrollLeft - deltaX;
+      event.preventDefault();
+    });
+
+    scroller.addEventListener("pointerup", endDrag);
+    scroller.addEventListener("pointercancel", endDrag);
+    scroller.addEventListener("lostpointercapture", endDrag);
   }
 
-  function endDrag(event) {
-    if (!isPointerDown) {
+  function initComparisonShell(shell) {
+    const scroller = shell.querySelector("[data-scrollable]");
+
+    if (!scroller) {
       return;
     }
 
-    isPointerDown = false;
-    scroller.classList.remove("is-dragging");
-
-    if (
-      event &&
-      typeof event.pointerId !== "undefined" &&
-      scroller.hasPointerCapture &&
-      scroller.hasPointerCapture(event.pointerId)
-    ) {
-      scroller.releasePointerCapture(event.pointerId);
+    if (!scroller.hasAttribute("tabindex")) {
+      scroller.setAttribute("tabindex", "0");
     }
-  }
 
-  scroller.addEventListener(
-    "scroll",
-    function () {
-      if (scroller.scrollLeft > 12) {
-        shell.classList.add("is-hint-dismissed");
+    if (!scroller.hasAttribute("aria-label")) {
+      scroller.setAttribute("aria-label", "Tableau comparatif défilant horizontalement");
+    }
+
+    function updateScrollState() {
+      const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+      const isScrollable = maxScrollLeft > 12;
+      const isAtEnd = scroller.scrollLeft >= maxScrollLeft - 8;
+
+      shell.classList.toggle("is-scrollable", isScrollable);
+      shell.classList.toggle("is-at-end", !isScrollable || isAtEnd);
+    }
+
+    scroller.addEventListener(
+      "scroll",
+      () => {
+        if (scroller.scrollLeft > 12) {
+          shell.classList.add("is-hint-dismissed");
+        }
+
+        updateScrollState();
+      },
+      { passive: true }
+    );
+
+    scroller.addEventListener("keydown", (event) => {
+      const step = Math.max(160, Math.round(scroller.clientWidth * 0.5));
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scroller.scrollBy({ left: step, behavior: "smooth" });
       }
 
-      updateScrollState();
-    },
-    { passive: true }
-  );
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scroller.scrollBy({ left: -step, behavior: "smooth" });
+      }
+    });
 
-  scroller.addEventListener("pointerdown", function (event) {
-    if (scroller.scrollWidth - scroller.clientWidth <= 12) {
-      return;
+    if (win.matchMedia && win.matchMedia("(pointer: fine)").matches) {
+      initMouseDrag(scroller, shell);
     }
 
-    isPointerDown = true;
-    startX = event.clientX;
-    startScrollLeft = scroller.scrollLeft;
-    scroller.classList.add("is-dragging");
+    win.addEventListener("resize", updateScrollState, { passive: true });
+    updateScrollState();
+  }
 
-    if (scroller.setPointerCapture) {
-      scroller.setPointerCapture(event.pointerId);
-    }
+  function initComparisonShells() {
+    const shells = Array.from(doc.querySelectorAll("[data-comparison-shell]"));
+
+    shells.forEach((shell) => {
+      initComparisonShell(shell);
+    });
+  }
+
+  onReady(() => {
+    initRevealAnimations();
+    initForms();
+    initComparisonShells();
   });
-
-  scroller.addEventListener("pointermove", function (event) {
-    if (!isPointerDown) {
-      return;
-    }
-
-    scroller.scrollLeft = startScrollLeft - (event.clientX - startX);
-  });
-
-  scroller.addEventListener("pointerup", endDrag);
-  scroller.addEventListener("pointercancel", endDrag);
-  scroller.addEventListener("mouseleave", endDrag);
-
-  window.addEventListener("resize", updateScrollState);
-  updateScrollState();
-}
-
-document.querySelectorAll("[data-comparison-shell]").forEach(initComparisonShell);
+})();
